@@ -22,6 +22,7 @@ namespace EntregaFinalHPII
 
         }
 
+        //Evento para que al cerrar la ventana finalice la ejecucion del programa
         private void frmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();

@@ -30,7 +30,7 @@ namespace EntregaFinalHPII
             SQLiteCommand comand;
             SQLiteDataReader datareader;
 
-            //Le asignamos la cadena de conexion
+            //Le asignamos la cadena de conexion para SQLite
             conexion = new SQLiteConnection("Data Source=dboEntregaFinal.db;Version=3");
             conexion.Open();//Abrimos la conexion
             comand = conexion.CreateCommand();
