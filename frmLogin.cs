@@ -11,9 +11,9 @@ using System.Data.SQLite;
 
 namespace EntregaFinalHPII
 {
-    public partial class Form1 : Form
+    public partial class frmLogin : Form
     {
-        public Form1()
+        public frmLogin()
         {
             InitializeComponent();
         }
@@ -45,7 +45,9 @@ namespace EntregaFinalHPII
             {
                 if (datareader.GetString(1) == user && datareader.GetString(2) == password)//Evaluamos si la informacion ingresada y la de la base de datos es igual
                 {
-                    //Abrir pantalla principal
+                    frmPrincipal frmPrincipal = new frmPrincipal();//Instanciamos el formulario de la pantalla principal
+                    frmPrincipal.Show();//Abrir pantalla principal
+                    this.Hide();//OCultamos la ventana del login
                     ban++;//Marcamos la bandera como verdadera
                 }
             }
@@ -77,7 +79,10 @@ namespace EntregaFinalHPII
         //Evento keypress para passar el cursor de usuario a contraseña con la tecla enter
         private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
         {
-            txtPassword.Focus();
+            if (e.KeyChar == 13)
+            {
+                txtPassword.Focus();
+            }
         }
     }
 }
