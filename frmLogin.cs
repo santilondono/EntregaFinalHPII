@@ -1,4 +1,13 @@
-﻿using System;
+﻿
+/*
+ * Santiago Londoño López
+ * Santiago Ramirez Valencia
+ * HERRAMIENTAS DE PROGRAMACION II
+ * 9/11/2021
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +25,8 @@ namespace EntregaFinalHPII
         public frmLogin()
         {
             InitializeComponent();
+            txtUser.Text = "lsantiago";
+            txtPassword.Text = "slondono";
         }
 
         public void Login()
@@ -83,6 +94,11 @@ namespace EntregaFinalHPII
             {
                 txtPassword.Focus();
             }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
