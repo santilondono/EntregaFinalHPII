@@ -89,7 +89,7 @@
             this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(213, 32);
+            this.label1.Size = new System.Drawing.Size(214, 32);
             this.label1.TabIndex = 1;
             this.label1.Text = "ENTREGA FINAL";
             // 
@@ -133,6 +133,7 @@
             this.btnInsertar.TabIndex = 2;
             this.btnInsertar.Text = "AÑADIR\r\nREGISTRO";
             this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // btnExportar
             // 
@@ -192,8 +193,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvImportacion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -206,5 +205,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellidos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
         private System.Windows.Forms.Button btnLimpiar;
+        public System.Windows.Forms.DataGridView dgvImportacion;
     }
 }

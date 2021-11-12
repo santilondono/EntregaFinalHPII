@@ -20,7 +20,7 @@ namespace EntregaFinalHPII
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         //Evento para que al cerrar la ventana finalice la ejecucion del programa
@@ -67,5 +67,13 @@ namespace EntregaFinalHPII
         {
             dgvImportacion.Rows.Clear();
         }
+
+        private void btnInsertar_Click(object sender, EventArgs e)
+        {
+            Form frmRegistrar = new frmRegistroManual();
+            frmRegistrar.Show();
+        }
+
+       
     }
 }

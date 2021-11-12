@@ -50,6 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conexion.cs" />
+    <Compile Include="frmRegistroManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegistroManual.Designer.cs">
+      <DependentUpon>frmRegistroManual.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmImportacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +77,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmImportacion.resx">
+      <DependentUpon>frmImportacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistroManual.resx">
+      <DependentUpon>frmRegistroManual.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

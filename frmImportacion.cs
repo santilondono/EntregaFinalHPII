@@ -16,5 +16,10 @@ namespace EntregaFinalHPII
         {
             InitializeComponent();
         }
+
+        private void frmImportacion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
