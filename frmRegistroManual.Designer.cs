@@ -124,6 +124,7 @@ namespace EntregaFinalHPII
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(297, 23);
             this.txtApellido.TabIndex = 12;
+            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
             // 
             // txtCorreo
             // 
@@ -131,6 +132,7 @@ namespace EntregaFinalHPII
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(297, 23);
             this.txtCorreo.TabIndex = 13;
+            this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             // 
             // btnSalir
             // 
@@ -169,6 +171,7 @@ namespace EntregaFinalHPII
             this.txtConfirmarCorreo.Name = "txtConfirmarCorreo";
             this.txtConfirmarCorreo.Size = new System.Drawing.Size(297, 23);
             this.txtConfirmarCorreo.TabIndex = 14;
+            this.txtConfirmarCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConfirmarCorreo_KeyPress);
             // 
             // ErrorProv01
             // 

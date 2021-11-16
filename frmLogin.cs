@@ -22,6 +22,7 @@ namespace EntregaFinalHPII
 {
     public partial class frmLogin : Form
     {
+        //Llamamos la clase que realiza la conexión//
         Conexion Conn = new Conexion();
         public frmLogin()
         {

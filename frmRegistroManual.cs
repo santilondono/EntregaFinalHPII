@@ -13,12 +13,14 @@ namespace EntregaFinalHPII
 {
     public partial class frmRegistroManual : Form
     {
+        //Abrimos la conexión, utilizando la clase conexión//
+        Conexion Conn_2 = new Conexion();
         public frmRegistroManual()
         {
             InitializeComponent();
         }
 
-
+        //------VALIDACIÓN DE CÉDULA------//
         private void txtCedula_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -28,7 +30,7 @@ namespace EntregaFinalHPII
             }
             if ((e.KeyChar >= 48 && e.KeyChar <= 59) || e.KeyChar == 13 || e.KeyChar == 08)
             {
-                
+                //El Handled se utiliza para deshabilitar o habilitar el teclado//
                 e.Handled = false;
             }
             else
@@ -42,7 +44,6 @@ namespace EntregaFinalHPII
             {
                 if (e.KeyChar == 13 || e.KeyChar == 08)
                 {
-                    //Handled desabilita o habilita las teclas//
                     e.Handled = false;
                 }
                 else
@@ -51,6 +52,8 @@ namespace EntregaFinalHPII
                 }
             }
         }
+
+        //------VALIDACIÓN DE NOMBRE------//
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -58,55 +61,81 @@ namespace EntregaFinalHPII
                 //El Focus se utiliza para avanzar al siguiente TXTBOX luego de cumplir con la sentencia ENTER (e.KeyChar == 13)//
                 txtApellido.Focus();
             }
-            if ((!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back)))
+            //Realizamos la condicional que sólo permita letras y algunas teclas especiales (Space, Suprimir, ENTER)
+            if ((!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back)) && (!(e.KeyChar == 13)) && (!(e.KeyChar == 127)) && (!(e.KeyChar == 32)))
             {
                 MessageBox.Show("Solo se permiten letras.", "¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }
-            else if (e.KeyChar == 13 || e.KeyChar == 127 || e.KeyChar == 32)
+            else 
             {
                 e.Handled = false;
             }
         }
 
+        //------VALIDACIÓN DE APELLIDO------//
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
-                //El Focus se utiliza para avanzar al siguiente TXTBOX luego de cumplir con la sentencia ENTER (e.KeyChar == 13)//
-                txtApellido.Focus();
+                txtCorreo.Focus();
             }
-            if ((!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back)))
+            //Realizamos la condicional que sólo permita letras y algunas teclas especiales (Space, Suprimir, ENTER)
+            if ((!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (!(e.KeyChar == 13)) && (!(e.KeyChar == 127)) && (!(e.KeyChar == 32))))
             {
                 MessageBox.Show("Solo se permiten letras.", "¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }
-            else if (e.KeyChar == 13 || e.KeyChar == 127 || e.KeyChar == 32)
+            else
             {
                 e.Handled = false;
             }
         }
 
+        //------VALIDACIÓN DE CORREO------//
         private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Verificamos que se utilice el @ en el correo y los dominios ".edu" y ".com"//
-            if (txtCorreo.Text.Contains("@") && (txtCorreo.Text.Contains(".com") || txtCorreo.Text.Contains(".edu")) || txtCorreo.Text.Contains (".co"))
+            
+            if (e.KeyChar == 13)
             {
-                ErrorProv01.Clear();
-                MessageBox.Show("Inscripción finalizada.");
+                txtConfirmarCorreo.Focus();
+            }
+            //Verificamos que se utilice el @ en el correo y los dominios ".edu" y ".com"//
+            if (txtCorreo.Text.Contains("@") && (txtCorreo.Text.Contains(".com") || txtCorreo.Text.Contains(".edu") || txtCorreo.Text.Contains(".co")))
+            {
+                e.Handled = false;
             }
             else
             {
-                ErrorProv01.SetError(txtCorreo, "Faltan carácteres especiales en el correo (@ ó dominio)");
+               
+                MessageBox.Show("Faltan carácteres especiales en el correo(@ ó dominio)", "¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
             }
         }
 
         private void txtConfirmarCorreo_KeyPress(object sender, KeyPressEventArgs e)
         {
+           
+            if (txtCorreo.Text == txtConfirmarCorreo.Text)
+            {
+                if (e.KeyChar == 13)
+                {
+                    //El Focus se utiliza para avanzar al siguiente TXTBOX luego de cumplir con la sentencia ENTER (e.KeyChar == 13)//
+                    btnRegistrar.Focus();
+                }
 
+            }
+            else
+            {
+                /*
+                MessageBox.Show("Los correos no coinciden.");
+                */
+            }
         }
+        //-----PROGRAMACIÓN DE BOTONES-----//
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -116,15 +145,23 @@ namespace EntregaFinalHPII
 
         public void btnRegistrar_Click(object sender, EventArgs e)
         {
-            string Cedula, Nombre, Apellido, Correo, Correo_2;
+            //Asignamo variables tipo string para almancenar la información de los TextBox//
+            string Cedula, Nombre, Apellido, Correo;
             Cedula = txtCedula.Text;
             Nombre = txtNombre.Text;
             Apellido = txtApellido.Text;
-            Correo = txtCorreo.Text;
-            Correo_2 = txtConfirmarCorreo.Text;
-            
-            
+            Correo = txtConfirmarCorreo.Text;
 
+            /* Utilizamos un condicional para verificar que los datos hallar sido enviados a la bese de datos correctamente,
+            en lacondicional llamamos a la clase, con las variables creadas */
+            if(Conn_2.InsertarDatos(Cedula, Nombre, Apellido, Correo))
+            {
+                MessageBox.Show("Datos registrado Exitosamente");
+            }
+            else
+            {
+                MessageBox.Show("los datos no se han podido registrar");
+            }
         }
     }
 }
