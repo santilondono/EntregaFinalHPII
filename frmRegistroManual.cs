@@ -105,42 +105,20 @@ namespace EntregaFinalHPII
             //Verificamos que se utilice el @ en el correo y los dominios ".edu" y ".com"//
             if (txtCorreo.Text.Contains("@") && (txtCorreo.Text.Contains(".com") || txtCorreo.Text.Contains(".edu") || txtCorreo.Text.Contains(".co")))
             {
-                e.Handled = false;
+                ErrorProv.Clear();
             }
             else
             {
-               
-                MessageBox.Show("Faltan carácteres especiales en el correo(@ ó dominio)", "¡Advertencia!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                e.Handled = true;
-                return;
+                ErrorProv.SetError(txtCorreo, "Faltan carácteres especiales en el correo (@ ó dominio)");
             }
         }
 
-        private void txtConfirmarCorreo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           
-            if (txtCorreo.Text == txtConfirmarCorreo.Text)
-            {
-                if (e.KeyChar == 13)
-                {
-                    //El Focus se utiliza para avanzar al siguiente TXTBOX luego de cumplir con la sentencia ENTER (e.KeyChar == 13)//
-                    btnRegistrar.Focus();
-                }
-
-            }
-            else
-            {
-                /*
-                MessageBox.Show("Los correos no coinciden.");
-                */
-            }
-        }
+       
         //-----PROGRAMACIÓN DE BOTONES-----//
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            frmPrincipal FrmReturn = new frmPrincipal();
-            FrmReturn.Show();
+            this.Close();
         }
 
         public void btnRegistrar_Click(object sender, EventArgs e)
@@ -154,14 +132,26 @@ namespace EntregaFinalHPII
 
             /* Utilizamos un condicional para verificar que los datos hallar sido enviados a la bese de datos correctamente,
             en lacondicional llamamos a la clase, con las variables creadas */
-            if(Conn_2.InsertarDatos(Cedula, Nombre, Apellido, Correo))
+            if(txtConfirmarCorreo.Text == txtCorreo.Text)
             {
-                MessageBox.Show("Datos registrado Exitosamente");
+                if (Conn_2.InsertarDatos(Cedula, Nombre, Apellido, Correo))
+                {
+                    txtCedula.Clear();
+                    txtNombre.Clear();
+                    txtApellido.Clear();
+                    txtCorreo.Clear();
+                    txtConfirmarCorreo.Clear();
+                    MessageBox.Show("Datos registrado Exitosamente");
+                }
+                else
+                {
+                    MessageBox.Show("Los datos no se han podido registrar");
+                }
             }
             else
             {
-                MessageBox.Show("los datos no se han podido registrar");
-            }
+                MessageBox.Show("Los correos no coinciden.");
+            }  
         }
     }
 }

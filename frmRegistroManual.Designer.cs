@@ -43,8 +43,8 @@ namespace EntregaFinalHPII
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.lblConfirmar = new System.Windows.Forms.Label();
             this.txtConfirmarCorreo = new System.Windows.Forms.TextBox();
-            this.ErrorProv01 = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.ErrorProv01)).BeginInit();
+            this.ErrorProv = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProv)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -171,11 +171,10 @@ namespace EntregaFinalHPII
             this.txtConfirmarCorreo.Name = "txtConfirmarCorreo";
             this.txtConfirmarCorreo.Size = new System.Drawing.Size(297, 23);
             this.txtConfirmarCorreo.TabIndex = 14;
-            this.txtConfirmarCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConfirmarCorreo_KeyPress);
             // 
-            // ErrorProv01
+            // ErrorProv
             // 
-            this.ErrorProv01.ContainerControl = this;
+            this.ErrorProv.ContainerControl = this;
             // 
             // frmRegistroManual
             // 
@@ -201,7 +200,7 @@ namespace EntregaFinalHPII
             this.Name = "frmRegistroManual";
             this.RightToLeftLayout = true;
             this.Text = "REGISTRO MANUAL";
-            ((System.ComponentModel.ISupportInitialize)(this.ErrorProv01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,6 +221,6 @@ namespace EntregaFinalHPII
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Label lblConfirmar;
         private System.Windows.Forms.TextBox txtConfirmarCorreo;
-        private System.Windows.Forms.ErrorProvider ErrorProv01;
+        private System.Windows.Forms.ErrorProvider ErrorProv;
     }
 }

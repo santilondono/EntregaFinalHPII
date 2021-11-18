@@ -13,6 +13,8 @@ namespace EntregaFinalHPII
 {
     public partial class frmPrincipal : Form
     {
+        //Abrimos la conexión, utilizando la clase conexión//
+        Conexion Conn_3 = new Conexion();
         public frmPrincipal()
         {
             InitializeComponent();
@@ -74,6 +76,30 @@ namespace EntregaFinalHPII
             frmRegistrar.Show();
         }
 
-       
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            //Lectura de columnas//
+            foreach (DataGridViewRow row in dgvImportacion.Rows)
+            {
+                bool Confirmacion;
+
+                //Asignación y llenado de variables//
+                string Cedulas = row.Cells["CC"].Value.ToString();
+                string Nombres = row.Cells["Nombres"].Value.ToString();
+                string Apellidos = row.Cells["Apellidos"].Value.ToString();
+                string Correos = row.Cells["Correo"].Value.ToString();
+
+                //Llamamos a la clase y enviamos los parámetros//
+                Confirmacion = Conn_3.InsertarDatos(Cedulas, Nombres, Apellidos, Correos);
+                if (Confirmacion)
+                {
+                    MessageBox.Show("Importación del DataGrid realizada a la base de datos.");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo realiza la importación del DataGrid realizada a la base de datos.");
+                }
+            }
+        }
     }
 }

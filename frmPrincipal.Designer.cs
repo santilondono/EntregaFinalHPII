@@ -144,6 +144,7 @@
             this.btnExportar.TabIndex = 3;
             this.btnExportar.Text = "EXPORTAR A LA BD";
             this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnCerrar
             // 
